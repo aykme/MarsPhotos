@@ -20,15 +20,14 @@ class PhotoGridAdapter : ListAdapter<MarsPhoto,
         override fun areContentsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
             return oldItem.imgSrcUrl == newItem.imgSrcUrl
         }
-
     }
 
     class MarsPhotoViewHolder(
         private val binding: GridViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(MarsPhoto: MarsPhoto) {
-            binding.photo = MarsPhoto
+        fun bind(marsPhoto: MarsPhoto) {
+            binding.photo = marsPhoto
             binding.executePendingBindings()
         }
     }
@@ -36,7 +35,7 @@ class PhotoGridAdapter : ListAdapter<MarsPhoto,
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PhotoGridAdapter.MarsPhotoViewHolder {
+    ): MarsPhotoViewHolder {
         return MarsPhotoViewHolder(
             GridViewItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -44,7 +43,7 @@ class PhotoGridAdapter : ListAdapter<MarsPhoto,
         )
     }
 
-    override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPhotoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarsPhotoViewHolder, position: Int) {
         val marsPhoto = getItem(position)
         holder.bind(marsPhoto)
     }
