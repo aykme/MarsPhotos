@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.android.marsphotos.network.MarsPhoto
+import com.example.android.marsphotos.overview.DiffPhotoGridAdapter
 import com.example.android.marsphotos.overview.MarsApiStatus
 import com.example.android.marsphotos.overview.PhotoGridAdapter
 
@@ -47,5 +48,17 @@ fun bindStatus(
         MarsApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
+    }
+}
+
+//Custom XML property for submit list to DiffPhotoAdapter
+@BindingAdapter("submitList")
+fun bindDiffPhotoGridAdapter(
+    recyclerView: RecyclerView,
+    newItemList: List<MarsPhoto>?
+) {
+    val adapter = recyclerView.adapter as DiffPhotoGridAdapter
+    if (newItemList != null) {
+        adapter.submit(newItemList)
     }
 }
